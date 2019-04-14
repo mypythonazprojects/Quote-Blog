@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body%}
+    
+    <h1>Home page</h1>
+    <h1>Hello me </h1>
+    
+    
+    <p>  this is {{ myname|upper }} </p>  <!--using of pip character-->
+    
+    
+    <p>
+    {% for i in list %}
+
+        {% if i is 2 %}  <!--this worked-->
+            <h{{i}} >  this is not me </h{{i}} >
+        {% else %}
+            <h{{i}} >  this is me </h{{i}} >
+        {% endif %}
+    {% endfor %}
+    </p>
+{% endblock%}
