@@ -1,21 +1,48 @@
 {% extends 'base.html' %}
 {% block body%}
-    
+
+    <h2 class="btn btn-primary" id="homehead">Home page</h2>
+
+    {% for quote in object_list %}
+    <!-- Card -->
+<div class="card" style="margin-top:1%;">
+ <!-- Card content -->
+    <div class="card-body" id="shadow">
+  
+      <!-- Title -->
+      <h4 class="card-title">
+
+        {{ quote.quotecatergory.title|upper }}
+      </h4>
+      <!-- Text -->
+      <p class="card-text" id="q">
+        {{ quote.quote }}
+
+      </p>
+      <!-- Button -->
+      <a href="#" class="btn btn-primary">{{quote.author}}</a>
+      <a href="#" class="btn btn-primary">{{quote.date}}</a>
+  
+    </div>
+  
+  </div>
+  <!-- Card -->
+  {% endfor %}
+{% endblock%}
+<!--
     <h1>Home page</h1>
     <h1>Hello me </h1>
     
     
-    <p>  this is {{ myname|upper }} </p>  <!--using of pip character-->
-    
-    
+    <p>  this is {{ myname|upper }} </p>  //using of pipe character
     <p>
     {% for i in list %}
 
-        {% if i is 2 %}  <!--this worked-->
+        {% if i is 2 %}  //this worked
             <h{{i}} >  this is not me </h{{i}} >
         {% else %}
             <h{{i}} >  this is me </h{{i}} >
         {% endif %}
     {% endfor %}
     </p>
-{% endblock%}
+-->

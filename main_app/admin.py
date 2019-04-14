@@ -1,3 +1,6 @@
 from django.contrib import admin
+from . models import QuoteCatergory
+from . models import Quote
 
-# Register your models here.
+admin.site.register(QuoteCatergory)
+admin.site.register(Quote)

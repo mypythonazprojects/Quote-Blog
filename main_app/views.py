@@ -4,9 +4,18 @@
     #return HttpResponse("<h1>Hello World</h1>")
 
 from django.views.generic import TemplateView
+from django.views.generic import ListView
+from . models import Quote
+from . models import QuoteCatergory
 
-class HomeView(TemplateView):
+class HomeView(ListView):
     template_name= "index.html"
+    model=Quote
+
+    def get_queryset(self):
+        queryset=super().get_queryset()
+        return queryset.select_related('quotecatergory')  #getting the foreign key values
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['myname'] = "azad"   #sending data to index.html
