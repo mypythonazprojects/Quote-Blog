@@ -2,7 +2,7 @@
 
 #def homeView(request):
     #return HttpResponse("<h1>Hello World</h1>")
-
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 from . models import Quote
@@ -11,6 +11,12 @@ from . models import QuoteCatergory
 class HomeView(ListView):
     template_name= "index.html"
     model=Quote
+    #getdata=Quote.objects.all()
+    def deleteq(request, id):
+        datadel=Quote.objects.get(pk=id)
+        datadel.delete()
+        return redirect('/')
+
 
     def get_queryset(self):
         queryset=super().get_queryset()
@@ -25,6 +31,7 @@ class HomeView(ListView):
         context['h_active']="active"
         context['a_active']=""
         return context
+   # return render(request, 'index.html', {'books':books})
 
 
 class AboutView(TemplateView):
