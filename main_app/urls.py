@@ -22,5 +22,7 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name="home"),
     path('home/', views.HomeView.as_view(), name="home"),
     path('about/', views.AboutView.as_view(), name="about"),   #don't forget to add , comma after path to add new path
-    path('delete/<id>/', views.HomeView.deleteq, name="delete") #define method don't need paranthese
+    path('delete/<id>/', views.HomeView.deleteq, name="delete"), #define method don't need paranthese
+    path('edit/<id>/', views.HomeView.editq, name="edit"),
+    path('update/<id>/', views.HomeView.updateq, name="update")
 ]

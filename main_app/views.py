@@ -11,12 +11,30 @@ from . models import QuoteCatergory
 class HomeView(ListView):
     template_name= "index.html"
     model=Quote
-    #getdata=Quote.objects.all()
+    #def getDAta(request):
+        #getdata=Quote.objects.all()
+        #context={
+        #   'getdata': getdata}
+        ## return render(request, 'index.html', context) 
     def deleteq(request, id):
         datadel=Quote.objects.get(pk=id)
         datadel.delete()
         return redirect('/')
-
+    def editq(request, id):
+        datae=Quote.objects.get(pk=id)
+        datae1=QuoteCatergory.objects.all()
+        context={
+            'datae':datae, 'datae1':datae1
+        }
+        return render(request, 'edit.html', context)
+    def updateq(request, id):
+        datau=Quote.objects.get(pk=id)
+        datau.quote=request.POST['quote']
+        datau.author=request.POST['author']
+        datau.date=request.POST['date']
+        datau.quotecatergory.title=request.POST['title']
+        datau.save()
+        return redirect('/')
 
     def get_queryset(self):
         queryset=super().get_queryset()
@@ -31,7 +49,6 @@ class HomeView(ListView):
         context['h_active']="active"
         context['a_active']=""
         return context
-   # return render(request, 'index.html', {'books':books})
 
 
 class AboutView(TemplateView):
